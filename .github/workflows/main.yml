@@ -1,0 +1,15 @@
+name: Main Workflow
+on: [push]
+jobs:
+  build:
+    name: Run load test using the action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run local load test
+        uses: ./
+        with:
+          cloud: true
+          token: ${{ secrets.K6_TOKEN }}
+          flags: --vus 1 --duration 10s

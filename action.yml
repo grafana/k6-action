@@ -1,0 +1,33 @@
+name: 'k6 Load Test'
+description: 'Run a load test with k6, a modern load testing tool built for developer happiness.'
+inputs:
+  cloud:
+    description: |
+      To run in the k6 cloud, provide your k6 cloud token as a secret to the input `token`.
+      Dont have a k6 account yet? Go to https://k6.io/cloud and activate your free trial.
+    required: false
+    default: false
+  token:
+    description: |
+      k6 Cloud Token. Only required for using the cloud service.
+    required: false
+    default: ''
+  filename:
+    description: |
+      Path to the test script to execute, relative to the workspace.
+    required: true
+    default: 'test.js'
+  flags:
+    description: |
+      Additional argument and flags to provide to the k6 CLI. See https://k6.io/docs/using-k6/options for details.
+    required: false
+    default: ''
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    K6_CLOUD_TOKEN: ${{ inputs.token }}
+  args:
+    - ${{ inputs.cloud }}
+    - ${{ inputs.filename || 'test.js' }}
+    - ${{ inputs.flags }}
