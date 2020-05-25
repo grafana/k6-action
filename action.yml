@@ -31,3 +31,6 @@ runs:
     - ${{ inputs.cloud }}
     - ${{ inputs.filename || 'test.js' }}
     - ${{ inputs.flags }}
+branding:
+  icon: 'bar-chart'
+  color: 'white'
