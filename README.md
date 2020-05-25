@@ -63,10 +63,10 @@ Enables execution in the k6 cloud. Additional details on the k6 cloud offering a
 
 ```yaml
 steps:
-      - name: Run local load test
-        uses: k6io/action@v0.1
-        with:
-          flags: --vus 1 --duration 10s
+  - name: Run local load test
+    uses: k6io/action@v0.1
+    with:
+      flags: --vus 1 --duration 10s
 ```
 
 Any additional arguments or flags to pass to the k6 cli. The full list of possible options is available at https://k6.io/docs/using-k6/options.
