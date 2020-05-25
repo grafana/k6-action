@@ -7,9 +7,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Run local load test
+      - name: Run load test using action from HEAD
         uses: ./
         with:
           cloud: true
           token: ${{ secrets.K6_TOKEN }}
           flags: --vus 1 --duration 10s
+      - name: Run load test using the latest release
+        uses: k6io/action@*
+        with:
+          cloud: true
+          token: ${{ secrets.K6_TOKEN }}
+          flags: --vus 1 --duration 10s
+
