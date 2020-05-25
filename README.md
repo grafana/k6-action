@@ -1,15 +1,9 @@
 <div align="center">
   
-  <video
+  <img
     src="https://raw.githubusercontent.com/k6io/action/master/k6.gif" 
-    type="video/mp4" 
-    autoplay="true"
-    loop="true"
-    muted="true"
-    playsinline
     width="600"
-    style="pointer-events: none;">
-  </video>
+    style="pointer-events: none;" />
 
   </br>
   Open source load testing tool and SaaS for ambitious engineering teams.
