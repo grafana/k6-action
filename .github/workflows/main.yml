@@ -7,14 +7,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Run load test using action from HEAD
+      - name: Run load test using action code from commit
         uses: ./
         with:
           cloud: true
           token: ${{ secrets.K6_TOKEN }}
           flags: --vus 1 --duration 10s
-      - name: Run load test using the latest release
-        uses: k6io/action
+      - name: Run load test using actions tarball
+        uses: k6io/action@HEAD
         with:
           cloud: true
           token: ${{ secrets.K6_TOKEN }}
