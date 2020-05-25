@@ -14,7 +14,7 @@ jobs:
           token: ${{ secrets.K6_TOKEN }}
           flags: --vus 1 --duration 10s
       - name: Run load test using the latest release
-        uses: k6io/action@*
+        uses: k6io/action
         with:
           cloud: true
           token: ${{ secrets.K6_TOKEN }}
