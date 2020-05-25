@@ -1,7 +1,7 @@
 <div align="center">
   
   <video
-    src="https://k6.io/static/home-page-main-a1896f864698fb61d0ba4a0b2807837f.mp4" 
+    src="https://raw.githubusercontent.com/k6io/action/master/k6.gif" 
     type="video/mp4" 
     autoplay="true"
     loop="true"
