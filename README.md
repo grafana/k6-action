@@ -14,6 +14,28 @@
 
 It's as easy as:
 
+### Local test
+
+```yaml
+name: Main Workflow
+on: [push]
+jobs:
+  build:
+    name: Run k6 test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run k6 local test
+        uses: k6io/action@v0.1
+        with:
+          filename: my-load-test.js
+          flags: --vus 50 --duration 10s
+```
+
+
+### Cloud test
+
 ```yaml
 name: Main Workflow
 on: [push]
