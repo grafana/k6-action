@@ -19,7 +19,7 @@ name: Main Workflow
 on: [push]
 jobs:
   build:
-    name: Run load test using the action
+    name: Run k6 test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,6 +27,7 @@ jobs:
       - name: Run k6 cloud test
         uses: k6io/action@v0.1
         with:
+          filename: my-load-test.js
           cloud: true
           token: ${{ secrets.K6_CLOUD_API_TOKEN }}
           flags: --vus 50 --duration 10s
