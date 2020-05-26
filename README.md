@@ -36,7 +36,7 @@ jobs:
 
 ### Cloud test
 
-```yaml
+```yml
 name: Main Workflow
 on: [push]
 jobs:
@@ -50,9 +50,9 @@ jobs:
         uses: k6io/action@v0.1
         with:
           filename: my-load-test.js
+          flags: --vus 50 --duration 10s
           cloud: true
           token: ${{ secrets.K6_CLOUD_API_TOKEN }}
-          flags: --vus 50 --duration 10s
 ```
 
 ## Inputs
