@@ -95,3 +95,15 @@ steps:
 Any additional arguments or flags to pass to the k6 cli. The full list of possible options is available at https://k6.io/docs/using-k6/options.
 
 For additional information, and help getting started, see https://k6.io
+
+## Side-by-side with the System under Test.
+
+```yaml
+steps:
+  - name: Run system under test
+    run: |
+      npm start & \
+        npx wait-on http://localhost:8080 # change to the port exposed by the system under test
+  - name: Run k6 local test
+    uses: k6io/action@v0.1
+```
