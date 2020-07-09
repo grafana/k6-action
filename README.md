@@ -98,12 +98,28 @@ For additional information, and help getting started, see https://k6.io
 
 ## Side-by-side with the System under Test.
 
+Unfortunately, running the local system under test and k6 at the same time is currently not supported by the marketplace action. Howeer, this is easily accomplished by downloading the k6 binary and running it from the same step as the server start:
+
 ```yaml
-steps:
-  - name: Run system under test
-    run: |
-      npm start & \
-        npx wait-on http://localhost:8080 # change to the port exposed by the system under test
-  - name: Run k6 local test
-    uses: k6io/action@v0.1
+name: Main Workflow
+on: [push]
+jobs:
+  build:
+    name: Run k6 test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install k6
+        run: |
+          curl https://github.com/loadimpact/k6/releases/download/v0.26.2/k6-v0.26.2-linux64.tar.gz -L | tar xvz --strip-components 1
+      - name: Install packages
+        run: |
+          npm install
+      - name: Start server and run tests
+        run: |
+          npm start & npx wait-on http://localhost:3000
+          ./k6 run test.js
 ```
+
+Thanks to [Amy Hoad](https://www.linkedin.com/in/amy-hoad/) for contributing on the solution for this.
