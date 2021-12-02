@@ -96,6 +96,29 @@ Any additional arguments or flags to pass to the k6 cli. The full list of possib
 
 For additional information, and help getting started, see https://k6.io
 
+### Environment Variables 
+Environment variables can be added the same way as you do it [locally](https://k6.io/docs/using-k6/options#supply-environment-variables), using the [`flags` action option](https://github.com/grafana/k6-action#flags):
+
+```yaml 
+steps:
+  - name: Run k6 local test
+    uses: k6io/action@v0.2.0
+    with:
+      filename: my-script-file.js
+      flags: --env MY_VAR=42
+```
+
+Or can be scoped to the action step:
+```yaml
+steps:
+  - name: Run k6 local test
+    uses: k6io/action@v0.2.0
+    with:
+      filename: my-script-file.js
+    env:
+      MY_VAR: 42
+```
+
 ## Side-by-side with the System under Test.
 
 Unfortunately, running the local system under test and k6 at the same time is currently not supported by the marketplace action. However, this is easily accomplished by downloading the k6 binary and running it from the same step as the server start:
