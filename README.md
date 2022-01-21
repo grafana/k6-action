@@ -1,7 +1,7 @@
 <div align="center">
   
   <img
-    src="https://raw.githubusercontent.com/k6io/action/master/k6.gif" 
+    src="https://raw.githubusercontent.com/grafana/k6-action/master/k6.gif"
     width="600"
     style="pointer-events: none;" />
 
@@ -27,7 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run k6 local test
-        uses: k6io/action@v0.2.0
+        uses: grafana/k6-action@v0.2.0
         with:
           filename: my-load-test.js
           flags: --vus 50 --duration 10s
@@ -47,7 +47,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run k6 cloud test
-        uses: k6io/action@v0.2.0
+        uses: grafana/k6-action@v0.2.0
         with:
           filename: my-load-test.js
           flags: --vus 50 --duration 10s
@@ -62,7 +62,7 @@ jobs:
 ```yaml
 steps:
   - name: Run k6 local test
-    uses: k6io/action@v0.2.0
+    uses: grafana/k6-action@v0.2.0
     with:
       filename: my-script-file.js
 ```
@@ -74,7 +74,7 @@ Sets the filename of the test script to execute. This property is relative to th
 ```yaml
 steps:
   - name: Run k6 cloud test
-    uses: k6io/action@v0.2.0
+    uses: grafana/k6-action@v0.2.0
     with:
       cloud: true
       token: ${{ secrets.K6_CLOUD_API_TOKEN }}
@@ -87,7 +87,7 @@ Enables execution in the k6 cloud. Additional details on the k6 cloud offering a
 ```yaml
 steps:
   - name: Run k6 local test
-    uses: k6io/action@v0.2.0
+    uses: grafana/k6-action@v0.2.0
     with:
       flags: --vus 50 --duration 10s
 ```
@@ -102,7 +102,7 @@ Environment variables can be added the same way as you do it [locally](https://k
 ```yaml 
 steps:
   - name: Run k6 local test
-    uses: k6io/action@v0.2.0
+    uses: grafana/k6-action@v0.2.0
     with:
       filename: my-script-file.js
       flags: --env MY_VAR=42
@@ -112,7 +112,7 @@ Or can be scoped to the action step:
 ```yaml
 steps:
   - name: Run k6 local test
-    uses: k6io/action@v0.2.0
+    uses: grafana/k6-action@v0.2.0
     with:
       filename: my-script-file.js
     env:
