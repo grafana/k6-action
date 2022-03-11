@@ -33,7 +33,6 @@ jobs:
           flags: --vus 50 --duration 10s
 ```
 
-
 ### Cloud test
 
 ```yml
@@ -72,6 +71,8 @@ Sets the filename of the test script to execute. This property is relative to th
 ### Cloud
 
 ```yaml
+environment: test
+
 steps:
   - name: Run k6 cloud test
     uses: grafana/k6-action@v0.2.0
@@ -80,7 +81,7 @@ steps:
       token: ${{ secrets.K6_CLOUD_API_TOKEN }}
 ```
 
-Enables execution in the k6 cloud. Additional details on the k6 cloud offering are available at https://k6.io/docs/cloud/.
+Enables execution in the k6 cloud. Additional details on the k6 cloud offering are available at https://k6.io/docs/cloud/. You'll need to specify the name of the `environment` where `K6_CLOUD_API_TOKEN` secret has been defined.
 
 ### Flags
 
@@ -96,10 +97,11 @@ Any additional arguments or flags to pass to the k6 cli. The full list of possib
 
 For additional information, and help getting started, see https://k6.io
 
-### Environment Variables 
+### Environment Variables
+
 Environment variables can be added the same way as you do it [locally](https://k6.io/docs/using-k6/options#supply-environment-variables), using the [`flags` action option](https://github.com/grafana/k6-action#flags):
 
-```yaml 
+```yaml
 steps:
   - name: Run k6 local test
     uses: grafana/k6-action@v0.2.0
@@ -109,6 +111,7 @@ steps:
 ```
 
 Or can be scoped to the action step:
+
 ```yaml
 steps:
   - name: Run k6 local test
@@ -119,7 +122,7 @@ steps:
       MY_VAR: 42
 ```
 
-## Side-by-side with the System under Test.
+## Side-by-side with the System under Test
 
 Unfortunately, running the local system under test and k6 at the same time is currently not supported by the marketplace action. However, this is easily accomplished by downloading the k6 binary and running it from the same step as the server start:
 
