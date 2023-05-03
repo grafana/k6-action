@@ -19,7 +19,7 @@ inputs:
     default: 'test.js'
   flags:
     description: |
-      Additional argument and flags to provide to the k6 CLI. See https://k6.io/docs/using-k6/options for details.
+      Additional argument and flags to provide to the k6 CLI. See https://k6.io/docs/using-k6/k6-options/reference/ for details.
     required: false
     default: ''
 runs:

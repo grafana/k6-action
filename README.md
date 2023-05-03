@@ -5,7 +5,7 @@
     width="600"
     style="pointer-events: none;" />
 
-  </br>
+  <br />
   Open source load testing tool and SaaS for ambitious engineering teams.
 
 </div>
@@ -27,7 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run k6 local test
-        uses: grafana/k6-action@v0.2.0
+        uses: grafana/k6-action@v0.3.0
         with:
           filename: my-load-test.js
           flags: --vus 50 --duration 10s
@@ -46,7 +46,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run k6 cloud test
-        uses: grafana/k6-action@v0.2.0
+        uses: grafana/k6-action@v0.3.0
         with:
           filename: my-load-test.js
           flags: --vus 50 --duration 10s
@@ -61,7 +61,7 @@ jobs:
 ```yaml
 steps:
   - name: Run k6 local test
-    uses: grafana/k6-action@v0.2.0
+    uses: grafana/k6-action@v0.3.0
     with:
       filename: my-script-file.js
 ```
@@ -75,7 +75,7 @@ environment: test
 
 steps:
   - name: Run k6 cloud test
-    uses: grafana/k6-action@v0.2.0
+    uses: grafana/k6-action@v0.3.0
     with:
       cloud: true
       token: ${{ secrets.K6_CLOUD_API_TOKEN }}
@@ -88,23 +88,23 @@ Enables execution in the k6 cloud. Additional details on the k6 cloud offering a
 ```yaml
 steps:
   - name: Run k6 local test
-    uses: grafana/k6-action@v0.2.0
+    uses: grafana/k6-action@v0.3.0
     with:
       flags: --vus 50 --duration 10s
 ```
 
-Any additional arguments or flags to pass to the k6 cli. The full list of possible options is available at https://k6.io/docs/using-k6/options.
+Any additional arguments or flags to pass to the k6 cli. The full list of possible options is available at https://k6.io/docs/using-k6/k6-options/reference/.
 
 For additional information, and help getting started, see https://k6.io
 
 ### Environment Variables
 
-Environment variables can be added the same way as you do it [locally](https://k6.io/docs/using-k6/options#supply-environment-variables), using the [`flags` action option](https://github.com/grafana/k6-action#flags):
+Environment variables can be added the same way as you do it [locally](https://k6.io/docs/using-k6/k6-options/reference/#supply-environment-variables), using the [`flags` action option](https://github.com/grafana/k6-action#flags):
 
 ```yaml
 steps:
   - name: Run k6 local test
-    uses: grafana/k6-action@v0.2.0
+    uses: grafana/k6-action@v0.3.0
     with:
       filename: my-script-file.js
       flags: --env MY_VAR=42
@@ -115,7 +115,7 @@ Or can be scoped to the action step:
 ```yaml
 steps:
   - name: Run k6 local test
-    uses: grafana/k6-action@v0.2.0
+    uses: grafana/k6-action@v0.3.0
     with:
       filename: my-script-file.js
     env:
@@ -138,7 +138,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Install k6
         run: |
-          curl https://github.com/loadimpact/k6/releases/download/v0.26.2/k6-v0.26.2-linux64.tar.gz -L | tar xvz --strip-components 1
+          curl https://github.com/grafana/k6/releases/download/v0.44.0/k6-v0.44.0-linux-amd64.tar.gz -L | tar xvz --strip-components 1
       - name: Install packages
         run: |
           npm install
