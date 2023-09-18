@@ -124,7 +124,38 @@ steps:
 
 ## Side-by-side with the System under Test
 
-Unfortunately, running the local system under test and k6 at the same time is currently not supported by the marketplace action. However, this is easily accomplished by downloading the k6 binary and running it from the same step as the server start:
+You might want to host the system under test (SUT) within the workflow for testing. If you have dockerized your application or SUT, you can use [service containers](https://docs.github.com/en/actions/using-containerized-services/about-service-containers) to make it available for testing within the same job. 
+
+The following example runs the application on port 3333. It passes the URL of the SUT as an environment variable to the k6 test and then runs the test.
+
+
+```yaml
+name: Testing QuickPizza
+on: push
+
+jobs:
+  runner-job:
+    runs-on: ubuntu-latest
+
+    services:
+      quickpizza:
+        image: ghcr.io/grafana/quickpizza-local:0.2.0
+        ports:
+          - 3333:3333
+          
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+  
+      - name: Run local k6 test
+        uses: grafana/k6-action@v0.2.0
+        with:
+          filename: script.js
+        env:
+          BASE_URL: "http://quickpizza:3333"
+```
+
+For non-Dockerized apps, you can download the k6 binary and run the k6 test from the same step as the app starts:
 
 ```yaml
 name: Main Workflow
