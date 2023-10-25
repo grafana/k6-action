@@ -139,7 +139,7 @@ jobs:
 
     services:
       quickpizza:
-        image: ghcr.io/grafana/quickpizza-local:0.2.0
+        image: ghcr.io/grafana/quickpizza-local:0.4.0
         ports:
           - 3333:3333
           
@@ -148,7 +148,7 @@ jobs:
         uses: actions/checkout@v4
   
       - name: Run local k6 test
-        uses: grafana/k6-action@v0.2.0
+        uses: grafana/k6-action@v0.3.0
         with:
           filename: script.js
         env:
