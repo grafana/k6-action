@@ -27,7 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Run k6 local test
-        uses: grafana/k6-action@v0.3.0
+        uses: grafana/k6-action@v0.3.1
         with:
           filename: my-load-test.js
           flags: --vus 50 --duration 10s
@@ -46,7 +46,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Run k6 cloud test
-        uses: grafana/k6-action@v0.3.0
+        uses: grafana/k6-action@v0.3.1
         with:
           filename: my-load-test.js
           flags: --vus 50 --duration 10s
@@ -61,7 +61,7 @@ jobs:
 ```yaml
 steps:
   - name: Run k6 local test
-    uses: grafana/k6-action@v0.3.0
+    uses: grafana/k6-action@v0.3.1
     with:
       filename: my-script-file.js
 ```
@@ -75,7 +75,7 @@ environment: test
 
 steps:
   - name: Run k6 cloud test
-    uses: grafana/k6-action@v0.3.0
+    uses: grafana/k6-action@v0.3.1
     with:
       cloud: true
       token: ${{ secrets.K6_CLOUD_API_TOKEN }}
@@ -88,7 +88,7 @@ Enables execution in the k6 cloud. Additional details on the k6 cloud offering a
 ```yaml
 steps:
   - name: Run k6 local test
-    uses: grafana/k6-action@v0.3.0
+    uses: grafana/k6-action@v0.3.1
     with:
       flags: --vus 50 --duration 10s
 ```
@@ -104,7 +104,7 @@ Environment variables can be added the same way as you do it [locally](https://k
 ```yaml
 steps:
   - name: Run k6 local test
-    uses: grafana/k6-action@v0.3.0
+    uses: grafana/k6-action@v0.3.1
     with:
       filename: my-script-file.js
       flags: --env MY_VAR=42
@@ -115,7 +115,7 @@ Or can be scoped to the action step:
 ```yaml
 steps:
   - name: Run k6 local test
-    uses: grafana/k6-action@v0.3.0
+    uses: grafana/k6-action@v0.3.1
     with:
       filename: my-script-file.js
     env:
@@ -148,7 +148,7 @@ jobs:
         uses: actions/checkout@v4
   
       - name: Run local k6 test
-        uses: grafana/k6-action@v0.3.0
+        uses: grafana/k6-action@v0.3.1
         with:
           filename: script.js
         env:
@@ -169,7 +169,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Install k6
         run: |
-          curl https://github.com/grafana/k6/releases/download/v0.44.0/k6-v0.44.0-linux-amd64.tar.gz -L | tar xvz --strip-components 1
+          curl https://github.com/grafana/k6/releases/download/v0.47.0/k6-v0.47.0-linux-amd64.tar.gz -L | tar xvz --strip-components 1
       - name: Install packages
         run: |
           npm install
