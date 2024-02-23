@@ -10,7 +10,7 @@
 
 </div>
 
-## Getting started
+## Get started
 
 It's as easy as:
 
@@ -81,7 +81,9 @@ steps:
       token: ${{ secrets.K6_CLOUD_API_TOKEN }}
 ```
 
-Enables execution in the k6 cloud. Additional details on the k6 cloud offering are available at https://k6.io/docs/cloud/. You'll need to specify the name of the `environment` where `K6_CLOUD_API_TOKEN` secret has been defined.
+Enables execution in Grafana Cloud k6. Additional details on the k6 cloud offering are available at [https://grafana.com/docs/grafana-cloud/k6/](https://grafana.com/docs/grafana-cloud/k6/).
+
+You can use a Grafana Cloud k6 personal API token, or a Grafana Stack API token. For more details, refer to [Authenticate on the CLI](https://grafana.com/docs/grafana-cloud/k6/author-run/tokens-and-cli-authentication/#authenticate-on-the-cli).
 
 ### Flags
 
@@ -93,13 +95,13 @@ steps:
       flags: --vus 50 --duration 10s
 ```
 
-Any additional arguments or flags to pass to the k6 cli. The full list of possible options is available at https://k6.io/docs/using-k6/k6-options/reference/.
+Any additional arguments or flags to pass to the k6 CLI. The full list of possible options is available at https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/.
 
-For additional information, and help getting started, see https://k6.io
+For additional information, and help getting started, see https://grafana.com/docs/k6/latest/get-started/running-k6/.
 
 ### Environment Variables
 
-Environment variables can be added the same way as you do it [locally](https://k6.io/docs/using-k6/k6-options/reference/#supply-environment-variables), using the [`flags` action option](https://github.com/grafana/k6-action#flags):
+Environment variables can be added the same way as you do it [locally](https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/#supply-environment-variables), using the [`flags` action option](https://github.com/grafana/k6-action#flags):
 
 ```yaml
 steps:
