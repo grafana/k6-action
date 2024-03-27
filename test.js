@@ -1,7 +1,7 @@
 import http from 'k6/http';
 
 import { Rate } from 'k6/metrics';
-import { check } from 'k6';
+import { check, sleep } from 'k6';
 
 const failRate = new Rate('failed_requests');
 
@@ -23,4 +23,7 @@ export default function () {
     'http response status code is 200': result.status === 200,
   });
   failRate.add(result.status !== 200);
+
+  console.log(`Request duration: ${result.timings.duration}`);
+  sleep(1);
 }
