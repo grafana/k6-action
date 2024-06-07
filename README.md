@@ -1,7 +1,7 @@
 > [!CAUTION]
 > This repository has been archived, and this project has been superseded by two new and more robust Github actions.
 >
-> Use [Setup k6 action](https://github.com/marketplace/actions/setup-grafana-k6) to set up K6 in your pipeline and then use [Run k6 action](https://github.com/marketplace/actions/run-grafana-k6-tests) to execute tests.
+> Use [Setup k6 action](https://github.com/marketplace/actions/setup-grafana-k6) to set up k6 in your pipeline and then use [Run k6 action](https://github.com/marketplace/actions/run-grafana-k6-tests) to execute tests.
 
 ## Get started
 
