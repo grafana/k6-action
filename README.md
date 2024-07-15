@@ -1,3 +1,6 @@
+> This action is replaced by two new actions - [Setup K6 Action](https://github.com/grafana/setup-k6-action) and [Run K6 Action](https://github.com/grafana/run-k6-action).
+> To learn more about using the new GitHub actions, follow the tutorial [here](https://grafana.com/blog/2024/07/15/performance-testing-with-grafana-k6-and-github-actions/).  
+
 <div align="center">
   
   <img
