@@ -1,22 +1,11 @@
-> This action is replaced by two new actions - [Setup K6 Action](https://github.com/grafana/setup-k6-action) and [Run K6 Action](https://github.com/grafana/run-k6-action).
+> ⚠️ This action has been archived and is no longer maintained. 
 > 
-> To learn more about using the new GitHub actions, follow the tutorial [here](https://grafana.com/blog/2024/07/15/performance-testing-with-grafana-k6-and-github-actions/).  
+> Please use the [Setup K6 Action](https://github.com/grafana/setup-k6-action) and [Run K6 Action](https://github.com/grafana/run-k6-action) instead. To learn about using the new GitHub actions, check out the [tutorial on using Grafana k6 and GitHub Actions](https://grafana.com/blog/2024/07/15/performance-testing-with-grafana-k6-and-github-actions/).  
 
-<div align="center">
-  
-  <img
-    src="https://raw.githubusercontent.com/grafana/k6-action/master/k6.gif"
-    width="600"
-    style="pointer-events: none;" />
+# k6-action
 
-  <br />
-  Open source load testing tool and SaaS for ambitious engineering teams.
-
-</div>
-
-## Get started
-
-It's as easy as:
+### See also
+- [Performance testing with Grafana k6 and GitHub Actions](https://grafana.com/blog/2024/07/15/performance-testing-with-grafana-k6-and-github-actions/)
 
 ### Local test
 
@@ -58,9 +47,9 @@ jobs:
           token: ${{ secrets.K6_CLOUD_API_TOKEN }}
 ```
 
-## Inputs
+### Inputs
 
-### Filename
+#### Filename
 
 ```yaml
 steps:
@@ -72,7 +61,7 @@ steps:
 
 Sets the filename of the test script to execute. This property is relative to the workspace directory. If omitted, it defaults to `test.js`.
 
-### Cloud
+#### Cloud
 
 ```yaml
 environment: test
@@ -89,7 +78,7 @@ Enables execution in Grafana Cloud k6. Additional details on the k6 cloud offeri
 
 You can use a Grafana Cloud k6 personal API token, or a Grafana Stack API token. For more details, refer to [Authenticate on the CLI](https://grafana.com/docs/grafana-cloud/k6/author-run/tokens-and-cli-authentication/#authenticate-on-the-cli).
 
-### Flags
+#### Flags
 
 ```yaml
 steps:
@@ -103,7 +92,7 @@ Any additional arguments or flags to pass to the k6 CLI. The full list of possib
 
 For additional information, and help getting started, see https://grafana.com/docs/k6/latest/get-started/running-k6/.
 
-### Environment Variables
+#### Environment Variables
 
 Environment variables can be added the same way as you do it [locally](https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/#supply-environment-variables), using the [`flags` action option](https://github.com/grafana/k6-action#flags):
 
@@ -128,61 +117,3 @@ steps:
       MY_VAR: 42
 ```
 
-## Side-by-side with the System under Test
-
-You might want to host the system under test (SUT) within the workflow for testing. If you have dockerized your application or SUT, you can use [service containers](https://docs.github.com/en/actions/using-containerized-services/about-service-containers) to make it available for testing within the same job. 
-
-The following example runs the application on port 3333. It passes the URL of the SUT as an environment variable to the k6 test and then runs the test.
-
-
-```yaml
-name: Testing QuickPizza
-on: push
-
-jobs:
-  runner-job:
-    runs-on: ubuntu-latest
-
-    services:
-      quickpizza:
-        image: ghcr.io/grafana/quickpizza-local:0.4.0
-        ports:
-          - 3333:3333
-          
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-  
-      - name: Run local k6 test
-        uses: grafana/k6-action@v0.3.1
-        with:
-          filename: script.js
-        env:
-          BASE_URL: "http://quickpizza:3333"
-```
-
-For non-Dockerized apps, you can download the k6 binary and run the k6 test from the same step as the app starts:
-
-```yaml
-name: Main Workflow
-on: [push]
-jobs:
-  build:
-    name: Run k6 test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Install k6
-        run: |
-          curl https://github.com/grafana/k6/releases/download/v0.47.0/k6-v0.47.0-linux-amd64.tar.gz -L | tar xvz --strip-components 1
-      - name: Install packages
-        run: |
-          npm install
-      - name: Start server and run tests
-        run: |
-          npm start & npx wait-on http://localhost:3000
-          ./k6 run test.js
-```
-
-Thanks to [Amy Hoad](https://www.linkedin.com/in/amy-hoad/) for contributing on the solution for this.
